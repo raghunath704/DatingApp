@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "users")
+@Document(collection = "Users")
 public class UserModel {
 
     @Id
@@ -34,9 +34,6 @@ public class UserModel {
     private Gender gender;
     private Date dateOfBirth;
     private String bio;
-    private String interests;
-    private String occupation;
-    private String education;
     @CreatedDate
     private Date createdAt;
     @CreatedDate
