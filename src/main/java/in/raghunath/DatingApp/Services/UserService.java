@@ -16,8 +16,9 @@ public class UserService {
 
     public UserModel createUser(UserModel user) {
         UserModel currentUser = new UserModel();
-        currentUser.setName(user.getName());
-        currentUser.setAge(user.getAge());
+        currentUser.setFirstName(user.getFirstName());
+        currentUser.setLastName(user.getLastName());
+
         userRepository.save(currentUser);
         return currentUser;
 
