@@ -11,4 +11,5 @@ public class AuthResponse {
     private String message;
     private String token;
 
+    // Getters and setters
 }

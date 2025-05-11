@@ -49,7 +49,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             // If we got a username AND SecurityContext is empty (user not already authenticated)
             if (usernameFromToken != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                // Load UserDetails from database ONLY if token is potentially valid
+                // Load UserDetails from database ONLY if token is valid
                 UserDetails userDetails = userDetailsService.loadUserByUsername(usernameFromToken);
 
                 // Validate the ACCESS token against the loaded UserDetails' username
@@ -67,13 +67,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                     // Set the authentication in the SecurityContext
                     SecurityContextHolder.getContext().setAuthentication(authToken);
-                    logger.debug("Authentication successful for user: " + usernameFromToken); // Add logging
+                    logger.debug("Authentication successful for user: " + usernameFromToken);
                 } else {
-                    logger.warn("JWT Token validation failed for user: " + usernameFromToken); // Add logging
+                    logger.warn("JWT Token validation failed for user: " + usernameFromToken);
                 }
             }
         } else {
-            logger.trace("No JWT Token found in Authorization header"); // Trace logging for no token
+            logger.trace("No JWT Token found in Authorization header");
         }
 
         // Continue the filter chain
