@@ -9,7 +9,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -34,6 +36,8 @@ public class UserModel {
     private Gender gender;
     private Date dateOfBirth;
     private String bio;
+    private List<Integer> preferredAgeRange;
+    private List<String> interests;
     @CreatedDate
     private Date createdAt;
     @CreatedDate

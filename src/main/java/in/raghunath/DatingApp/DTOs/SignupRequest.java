@@ -1,5 +1,6 @@
 package in.raghunath.DatingApp.DTOs;
 
+import in.raghunath.DatingApp.Models.Gender;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -20,4 +21,9 @@ public class SignupRequest {
     @NotBlank(message = "Email cannot be empty")
     @Email(message = "Please provide a valid email address")
     private String email;
+
+    @NotBlank(message = "Gender cannot be empty")
+    private Gender gender;
+
+
 }

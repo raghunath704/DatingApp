@@ -57,6 +57,7 @@ public class AuthService {
         user.setUsername(signupRequest.getUsername());
         user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
         user.setEmail(signupRequest.getEmail());
+        user.setGender(signupRequest.getGender());
         userRepo.save(user);
         return new AuthResponse("Registration successful. Please login.", null);
     }
