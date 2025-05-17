@@ -22,9 +22,4 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
-    @PostMapping("/api/users")
-    public ResponseEntity<UserModel> createBlog(@RequestBody UserModel user) {
-        UserModel createdUser = userService.createUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
-    }
 }
