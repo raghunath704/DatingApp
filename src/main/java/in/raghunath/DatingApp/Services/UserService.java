@@ -28,6 +28,7 @@ public class UserService {
         currentUser.setBio(user.getBio());
         currentUser.setInterests(user.getInterests());
         currentUser.setPreferredAgeRange(user.getPreferredAgeRange());
+        currentUser.setDateOfBirth(user.getDateOfBirth());
         currentUser.setBio(user.getBio());
         currentUser.setUpdatedAt(new Date());
         return userRepository.save(currentUser);

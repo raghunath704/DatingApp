@@ -26,6 +26,7 @@ public class UserUpdateRequest {
     private String firstName;
     private String lastName;
     private String bio;
+    private Date dateOfBirth;
     private List<Integer> preferredAgeRange;
     private List<String> interests;
 }
