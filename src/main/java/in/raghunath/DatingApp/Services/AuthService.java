@@ -16,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional; // Optional: for signup atomicity
 
+import java.util.Date;
+
 
 @Service
 public class AuthService {
@@ -58,6 +60,7 @@ public class AuthService {
         user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
         user.setEmail(signupRequest.getEmail());
         user.setGender(signupRequest.getGender());
+        user.setCreatedAt(new Date());
         userRepo.save(user);
         return new AuthResponse("Registration successful. Please login.", null);
     }

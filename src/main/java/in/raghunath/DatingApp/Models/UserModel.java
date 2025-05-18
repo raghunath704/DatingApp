@@ -14,7 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class UserModel {
     private Gender gender;
     private Date dateOfBirth;
 
-    //No need to store this in DB
+
     @Transient
     @JsonProperty(access = READ_ONLY)
     public Integer getAge() {
