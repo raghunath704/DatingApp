@@ -1,6 +1,10 @@
 package in.raghunath.DatingApp.DTOs;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
 @Getter
@@ -12,4 +16,5 @@ public class AuthResponse {
     private String token;
 
     // Getters and setters
+    
 }

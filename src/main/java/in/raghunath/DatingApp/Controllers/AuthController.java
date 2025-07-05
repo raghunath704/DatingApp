@@ -1,24 +1,28 @@
 package in.raghunath.DatingApp.Controllers;
 
-import in.raghunath.DatingApp.DTOs.ApiResponse;
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.raghunath.DatingApp.DTOs.ApiResponse; // Use jakarta imports for Spring Boot 3+
 import in.raghunath.DatingApp.DTOs.AuthResponse;
 import in.raghunath.DatingApp.DTOs.LoginRequest;
-import in.raghunath.DatingApp.DTOs.SignupRequest;
-import in.raghunath.DatingApp.Exceptions.TokenRefreshException;
-import in.raghunath.DatingApp.Models.RefreshTokenModel;
+import in.raghunath.DatingApp.DTOs.SignupRequest; // Import Value
+import in.raghunath.DatingApp.Exceptions.TokenRefreshException; // Import HttpHeaders
+import in.raghunath.DatingApp.Models.RefreshTokenModel; // Import ResponseCookie
 import in.raghunath.DatingApp.Services.AuthService;
 import in.raghunath.DatingApp.Services.RefreshTokenService;
 import in.raghunath.DatingApp.Utils.JwtUtil;
-import jakarta.servlet.http.Cookie; // Use jakarta imports for Spring Boot 3+
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Value; // Import Value
-import org.springframework.http.HttpHeaders; // Import HttpHeaders
-import org.springframework.http.ResponseCookie; // Import ResponseCookie
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
 
 @RestController
 @RequestMapping("/auth") // Base path for all auth endpoints
@@ -43,6 +47,7 @@ public class AuthController {
         try {
             AuthResponse response = authService.registerUser(signupRequest);
             return ResponseEntity.ok(response);
+            
         } catch (RuntimeException ex) {
             return ResponseEntity.badRequest().body(new AuthResponse(ex.getMessage(), null));
         }

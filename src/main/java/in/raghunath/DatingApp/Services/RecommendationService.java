@@ -28,25 +28,7 @@ public class RecommendationService {
             if (currentUser.getGender() != null && currentUser.getGender().equals(other.getGender())) {
                 continue;
             }
-            int score = 0;
-
-            // Shared interests
-            if (currentUser.getInterests() != null && other.getInterests() != null) {
-                for (String interest : currentUser.getInterests()) {
-                    if (other.getInterests().contains(interest)) {
-                        score += 30; // Weight for shared interest
-                    }
-                }
-            }
-
-            // Age preference
-            Integer otherAge = other.getAge();
-            List<Integer> preferredRange = currentUser.getPreferredAgeRange();
-            if (otherAge != null && preferredRange != null && preferredRange.size() == 2) {
-                if (otherAge >= preferredRange.get(0) && otherAge <= preferredRange.get(1)) {
-                    score += 20; // Weight for age match
-                }
-            }
+            int score = getScore(other, currentUser);
 
             if (score > 0) {
                 scoredUsers.add(new ScoredUser(other, score));
@@ -61,6 +43,29 @@ public class RecommendationService {
                 .limit(topN)
                 .map(su -> su.user)
                 .collect(Collectors.toList());
+    }
+
+    private static int getScore(UserModel other, UserModel currentUser) {
+        int score = 0;
+
+        // Shared interests
+        if (currentUser.getInterests() != null && other.getInterests() != null) {
+            for (String interest : currentUser.getInterests()) {
+                if (other.getInterests().contains(interest)) {
+                    score += 30;
+                }
+            }
+        }
+
+        // Age preference
+        Integer otherAge = other.getAge();
+        List<Integer> preferredRange = currentUser.getPreferredAgeRange();
+        if (otherAge != null && preferredRange != null && preferredRange.size() == 2) {
+            if (otherAge >= preferredRange.get(0) && otherAge <= preferredRange.get(1)) {
+                score += 10;
+            }
+        }
+        return score;
     }
 
     private static class ScoredUser {
